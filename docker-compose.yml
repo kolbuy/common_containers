@@ -1,0 +1,38 @@
+#proxy:
+#    image: nginx:latest
+#    volumes:
+#        - ./nginx/conf.d/:/etc/nginx/conf.d/
+#        - ./nginx/logs/:/var/log/nginx/
+#        - ./nginx/apps/:/apps/
+#    ports:
+#        - "80:80"
+mysql:
+    image: mysql:5.6
+    volumes:
+        - ./mysql:/var/lib/mysql
+    ports:
+        - 3306:3306
+    environment:
+        - MYSQL_ROOT_PASSWORD=Aa123456
+rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbit-dev
+    ports:
+        - 15672:15672
+        - 5672:5672
+    environment:
+        HOSTNAME: rabbit-dev
+        RABBITMQ_NODENAME: rabbit-dev
+        RABBITMQ_DEFAULT_USER: dev
+        RABBITMQ_DEFAULT_PASS: Aa123456
+        RABBITMQ_LOG_BASE: /var/log/rabbitmq
+    volumes:
+        - ./rabbitmq/mnesia:/var/lib/rabbitmq/mnesia
+        - ./rabbitmq/logs/:/var/log/rabbitmq/
+redis:
+    image: redis
+    ports:
+        - 6379:6379
+    volumes:
+        - ./redis:/data
+    
