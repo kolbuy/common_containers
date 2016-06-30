@@ -94,8 +94,9 @@
 
 ## centos
 
+	rpm -iUvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-7.noarch.rpm
 	sudo yum -y update
-	sudo yum install -y python
+	sudo yum install -y python-pip
 	pip install docker-compose 
 
 ## ubuntu 
